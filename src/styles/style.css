@@ -197,6 +197,10 @@ textarea::placeholder {
   color: #b00020;
 }
 
+.note-search input {
+  width: 100%;
+}
+
 .notes-app__footer {
   border-top: 1px solid #aaa;
   margin-top: 50px;

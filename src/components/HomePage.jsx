@@ -10,11 +10,11 @@ export default function HomePage({ notes, onArchive, onDelete }) {
           Add new note
         </button>
       </a>
-      <h2>Active Notes</h2>
       <NotesList
         notesList={notes.filter((note) => note.archived === false)}
         onDelete={onDelete}
         onArchive={onArchive}
+        title="Active Notes"
       />
     </>
   );
