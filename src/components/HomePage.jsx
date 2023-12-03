@@ -3,7 +3,11 @@ import NotesList from "./NotesList";
 
 export default function HomePage({ notes, setNotes }) {
   function onDelete(id) {
-    const result = window.confirm("Are you sure you want to delete this?");
+    const note = notes.find((note) => note.id === id);
+    if (!note) return;
+    const result = window.confirm(
+      `Are you sure you want to delete "${note.title}"?`
+    );
     if (result) {
       setNotes((notes) => notes.filter((note) => note.id !== id));
       // toast.success('Note deleted!');
