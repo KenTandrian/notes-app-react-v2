@@ -10,6 +10,11 @@ body {
   color: white;
 }
 
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 input,
 textarea {
   padding: 12px;
