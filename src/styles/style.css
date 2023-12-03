@@ -35,7 +35,7 @@ textarea::placeholder {
 .note-app__header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 4px 30px;
   border-bottom: 1px solid #aaa;
   position: sticky;
