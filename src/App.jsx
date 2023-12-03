@@ -9,16 +9,6 @@ import ArchivePage from "./components/ArchivePage";
 export default function App() {
   const [notes, setNotes] = React.useState(getAllNotes());
 
-  function onSearch(text) {
-    if (text.length !== 0 && text.trim() !== "")
-      setNotes(
-        getAllNotes().filter((note) =>
-          note.title.toLowerCase().includes(text.toLowerCase())
-        )
-      );
-    else setNotes(getAllNotes());
-  }
-
   function onDelete(id) {
     const note = notes.find((note) => note.id === id);
     if (!note) return;
@@ -44,7 +34,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="app-container">
-        <Header onSearch={onSearch} />
+        <Header />
         <div className="note-app__body">
           <Routes>
             <Route
