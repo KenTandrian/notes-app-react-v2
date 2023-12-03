@@ -1,11 +1,10 @@
-import React from "react";
-import SearchBar from "./HeaderSearch";
-
-export default function Header({ onSearch }) {
+export default function Header() {
   return (
     <div className="note-app__header">
       <h1>My Notes</h1>
-      <SearchBar onSearch={onSearch} />
+      <a href="/archive">
+        <button className="note-app_archive-button">Archive</button>
+      </a>
     </div>
   );
 }
