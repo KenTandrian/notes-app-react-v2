@@ -1,9 +1,10 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { showFormattedDate } from "../utils";
 
 export default function DetailPage({ notes, onArchive, onDelete }) {
   const { id } = useParams();
+  const navigate = useNavigate();
   const note = notes.find((note) => note.id === id);
   return (
     <section className="detail-page">
@@ -13,13 +14,19 @@ export default function DetailPage({ notes, onArchive, onDelete }) {
       <div className="detail-page__action">
         <button
           className="detail-page__archive-button"
-          onClick={() => onArchive(id)}
+          onClick={() => {
+            onArchive(id);
+            navigate("/");
+          }}
         >
           {note.archived === false ? "Archive" : "Unarchive"}
         </button>
         <button
           className="detail-page__delete-button"
-          onClick={() => onDelete(id)}
+          onClick={() => {
+            onDelete(id);
+            navigate("/");
+          }}
         >
           Delete
         </button>
