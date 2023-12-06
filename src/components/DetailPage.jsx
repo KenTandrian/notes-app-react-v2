@@ -1,11 +1,12 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { showFormattedDate } from "../utils";
+import { getNote } from "../utils/local-data";
 
-export default function DetailPage({ notes, onArchive, onDelete }) {
+export default function DetailPage({ onArchive, onDelete }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const note = notes.find((note) => note.id === id);
+  const note = getNote(id);
   return (
     <section className="detail-page">
       <h3 className="detail-page__title">{note.title}</h3>

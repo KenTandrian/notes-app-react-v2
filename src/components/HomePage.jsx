@@ -1,7 +1,9 @@
 import React from "react";
 import NotesList from "./NotesList";
+import { getActiveNotes } from "../utils/local-data";
 
-export default function HomePage({ notes }) {
+export default function HomePage() {
+  const notes = getActiveNotes();
   return (
     <>
       <h2 className="note-body__heading">Welcome to your personal notes!</h2>
