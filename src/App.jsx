@@ -5,6 +5,7 @@ import { getAllNotes } from "./utils/local-data";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import ArchivePage from "./components/ArchivePage";
+import DetailPage from "./components/DetailPage";
 
 export default function App() {
   const [notes, setNotes] = React.useState(getAllNotes());
@@ -37,28 +38,19 @@ export default function App() {
         <Header />
         <div className="note-app__body">
           <Routes>
-            <Route
-              path="/"
-              element={
-                <HomePage
-                  notes={notes}
-                  onArchive={onArchive}
-                  onDelete={onDelete}
-                />
-              }
-            />
-            <Route
-              path="/archive"
-              element={
-                <ArchivePage
-                  notes={notes}
-                  onArchive={onArchive}
-                  onDelete={onDelete}
-                />
-              }
-            />
+            <Route path="/" element={<HomePage notes={notes} />} />
+            <Route path="/archive" element={<ArchivePage notes={notes} />} />
             <Route path="/new" />
-            <Route path="/notes/:id" />
+            <Route
+              path="/notes/:id"
+              element={
+                <DetailPage
+                  notes={notes}
+                  onArchive={onArchive}
+                  onDelete={onDelete}
+                />
+              }
+            />
           </Routes>
         </div>
         <Footer />

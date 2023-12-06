@@ -163,37 +163,37 @@ textarea::placeholder {
   margin-top: 20px;
 }
 
-.note-item__action {
+.detail-page__action {
   display: flex;
 }
 
-.note-item__delete-button,
-.note-item__archive-button {
+.detail-page__delete-button,
+.detail-page__archive-button {
   display: block;
   width: 100%;
   background-color: transparent;
-  border: 0;
-  border-top: 1px solid #aaa;
+  border: 1px solid #aaa;
+  margin-top: 20px;
   padding: 8px 0;
   font-family: "Inter", sans-serif;
   font-weight: bold;
   cursor: pointer;
 }
 
-.note-item__delete-button {
+.detail-page__delete-button {
   color: #ff5f52;
 }
 
-.note-item__archive-button {
+.detail-page__archive-button {
   border-right: 1px solid #aaa;
   color: #fff263;
 }
 
-.note-item__archive-button:hover {
+.detail-page__archive-button:hover {
   color: #c49000;
 }
 
-.note-item__delete-button:hover {
+.detail-page__delete-button:hover {
   color: #b00020;
 }
 
@@ -223,6 +223,28 @@ textarea::placeholder {
   font-family: "Inter", sans-serif;
   font-weight: bold;
   cursor: pointer;
+}
+
+.detail-page {
+  margin: 32px auto 0;
+  width: 95%;
+}
+
+.detail-page__title {
+  word-wrap: break-word;
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.detail-page__date {
+  color: #c7c7c7;
+}
+
+.detail-page__body {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-top: 36px;
+  margin-bottom: 36px;
 }
 
 .ReactModal__Overlay {
@@ -262,6 +284,10 @@ textarea::placeholder {
     min-width: 400px;
   }
 
+  .detail-page__title {
+    font-size: 56px;
+  }
+
   .ReactModal__Content,
   .ReactModal__Content--after-open {
     width: 600px;
@@ -271,6 +297,10 @@ textarea::placeholder {
 @media only screen and (min-width: 1200px) {
   .notes-list {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .detail-page__title {
+    font-size: 64px;
   }
 
   .ReactModal__Content,

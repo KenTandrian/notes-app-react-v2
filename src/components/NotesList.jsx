@@ -2,7 +2,7 @@ import React from "react";
 import NoteItem from "./NoteItem";
 import SearchBar from "./HeaderSearch";
 
-export default function NotesList({ notesList, onDelete, onArchive, title }) {
+export default function NotesList({ notesList, title }) {
   const [filteredNotes, setFilteredNotes] = React.useState(notesList);
   function onSearch(text) {
     if (text.length !== 0 && text.trim() !== "")
@@ -21,12 +21,7 @@ export default function NotesList({ notesList, onDelete, onArchive, title }) {
       {filteredNotes.length !== 0 ? (
         <div className="notes-list">
           {filteredNotes.map((item) => (
-            <NoteItem
-              key={item.id}
-              note={item}
-              onDelete={onDelete}
-              onArchive={onArchive}
-            />
+            <NoteItem key={item.id} note={item} />
           ))}
         </div>
       ) : (

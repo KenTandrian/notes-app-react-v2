@@ -1,7 +1,7 @@
 import React from "react";
 import NotesList from "./NotesList";
 
-export default function HomePage({ notes, onArchive, onDelete }) {
+export default function HomePage({ notes }) {
   return (
     <>
       <h2 className="note-body__heading">Welcome to your personal notes!</h2>
@@ -12,8 +12,6 @@ export default function HomePage({ notes, onArchive, onDelete }) {
       </a>
       <NotesList
         notesList={notes.filter((note) => note.archived === false)}
-        onDelete={onDelete}
-        onArchive={onArchive}
         title="Active Notes"
       />
     </>
