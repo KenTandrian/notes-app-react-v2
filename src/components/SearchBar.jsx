@@ -1,9 +1,12 @@
+import debounce from "lodash.debounce";
 import React from "react";
 
+const DEBOUNCE_TIME_MS = 250;
+
 export default function SearchBar({ onSearch }) {
-  const onSearchbarChange = (event) => {
+  const onSearchbarChange = debounce((event) => {
     onSearch(event.target.value);
-  };
+  }, DEBOUNCE_TIME_MS);
 
   return (
     <div className="note-search">
