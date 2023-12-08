@@ -143,6 +143,7 @@ textarea::placeholder {
 }
 
 .note-item__title {
+  cursor: pointer;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

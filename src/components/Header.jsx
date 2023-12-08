@@ -1,12 +1,18 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Header() {
+  const navigate = useNavigate();
   return (
     <div className="note-app__header">
-      <a href="/">
-        <h1>My Notes</h1>
-      </a>
-      <a href="/archive">
-        <button className="note-app_archive-button">Archive</button>
-      </a>
+      <h1 onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
+        My Notes
+      </h1>
+      <button
+        className="note-app_archive-button"
+        onClick={() => navigate("/archive")}
+      >
+        Archive
+      </button>
     </div>
   );
 }
