@@ -169,7 +169,8 @@ textarea::placeholder {
 }
 
 .detail-page__delete-button,
-.detail-page__archive-button {
+.detail-page__archive-button,
+.add-page__button {
   display: block;
   width: 100%;
   background-color: transparent;
@@ -185,7 +186,8 @@ textarea::placeholder {
   color: #ff5f52;
 }
 
-.detail-page__archive-button {
+.detail-page__archive-button,
+.add-page__button {
   border-right: 1px solid #aaa;
   color: #fff263;
 }
@@ -246,6 +248,41 @@ textarea::placeholder {
   line-height: 1.5;
   margin-top: 36px;
   margin-bottom: 36px;
+}
+
+.add-page__input {
+  margin-top: 32px;
+}
+
+.add-page__input .add-page__input__title {
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 64px;
+  font-weight: bold;
+  padding: 8px 0;
+}
+
+.add-page__input__title::placeholder {
+  color: #c7c7c7;
+}
+
+.add-page__input .add-page__input__body {
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  padding: 8px 0;
+  min-height: 500px;
+}
+
+[data-placeholder]:empty::before {
+  content: attr(data-placeholder);
+  color: #c7c7c7;
 }
 
 .ReactModal__Overlay {

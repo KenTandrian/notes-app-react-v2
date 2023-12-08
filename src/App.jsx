@@ -11,6 +11,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import ArchivePage from "./components/ArchivePage";
 import DetailPage from "./components/DetailPage";
+import AddPage from "./components/AddPage";
 
 export default function App() {
   function onDelete(id) {
@@ -40,7 +41,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/archive" element={<ArchivePage />} />
-            <Route path="/new" />
+            <Route path="/new" element={<AddPage />} />
             <Route
               path="/notes/:id"
               element={<DetailPage onArchive={onArchive} onDelete={onDelete} />}
