@@ -1,17 +1,17 @@
 import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import AddPage from "./pages/AddPage";
+import ArchivePage from "./pages/ArchivePage";
+import DetailPage from "./pages/DetailPage";
+import HomePage from "./pages/HomePage";
 import {
   archiveNote,
   deleteNote,
   getAllNotes,
   unarchiveNote,
 } from "./utils/local-data";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./components/HomePage";
-import ArchivePage from "./components/ArchivePage";
-import DetailPage from "./components/DetailPage";
-import AddPage from "./components/AddPage";
 
 export default function App() {
   function onDelete(id) {

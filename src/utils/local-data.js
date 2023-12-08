@@ -112,13 +112,13 @@ function editNote({ id, title, body }) {
 }
 
 export {
-  getAllNotes,
-  getActiveNotes,
-  getArchivedNotes,
+  addNote,
+  archiveNote,
   deleteNote,
   editNote,
+  getActiveNotes,
+  getAllNotes,
+  getArchivedNotes,
   getNote,
-  archiveNote,
   unarchiveNote,
-  addNote,
 };

@@ -1,6 +1,6 @@
 import React from "react";
-import { showFormattedDate } from "../utils";
 import { useNavigate } from "react-router-dom";
+import { showFormattedDate } from "../utils";
 
 export default function NoteItem({ note }) {
   const navigate = useNavigate();

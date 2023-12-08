@@ -1,7 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import NotesList from "../components/NotesList";
 import { getActiveNotes } from "../utils/local-data";
-import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
   const notes = getActiveNotes();

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import NoteInput from "../components/NoteInput";
 import { useNavigate } from "react-router-dom";
+import NoteInput from "../components/NoteInput";
 import { addNote } from "../utils/local-data";
 
 const INITIAL_STATE = {
