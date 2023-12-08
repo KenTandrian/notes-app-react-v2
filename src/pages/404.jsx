@@ -1,10 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function NotFoundPage() {
+  const navigate = useNavigate();
   return (
-    <section>
-      <h2>404</h2>
-      <p>Page not found.</p>
+    <section className="detail-page">
+      <h3 className="detail-page__title">404</h3>
+      <p className="detail-page__body">Page not found.</p>
+      <button
+        className="detail-page__archive-button"
+        onClick={() => navigate("/")}
+      >
+        Back to Homepage
+      </button>
     </section>
   );
 }
