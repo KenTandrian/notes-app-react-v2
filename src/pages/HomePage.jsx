@@ -1,5 +1,5 @@
 import React from "react";
-import NotesList from "./NotesList";
+import NotesList from "../components/NotesList";
 import { getActiveNotes } from "../utils/local-data";
 import { useNavigate } from "react-router-dom";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import NotesList from "./NotesList";
+import NotesList from "../components/NotesList";
 import { getArchivedNotes } from "../utils/local-data";
 
 export default function ArchivePage() {

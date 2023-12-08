@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NoteInput from "./NoteInput";
+import NoteInput from "../components/NoteInput";
 import { useNavigate } from "react-router-dom";
 import { addNote } from "../utils/local-data";
 
