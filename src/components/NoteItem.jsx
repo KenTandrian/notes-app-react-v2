@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { showFormattedDate } from "../utils";
@@ -19,3 +20,7 @@ export default function NoteItem({ note }) {
     </div>
   );
 }
+
+NoteItem.propTypes = {
+  note: PropTypes.object.isRequired,
+};

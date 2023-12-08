@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import NoteItem from "./NoteItem";
 import SearchBar from "./SearchBar";
@@ -30,3 +31,8 @@ export default function NotesList({ notesList, title }) {
     </>
   );
 }
+
+NotesList.propTypes = {
+  notesList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  title: PropTypes.string.isRequired,
+};
