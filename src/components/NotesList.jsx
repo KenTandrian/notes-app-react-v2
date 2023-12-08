@@ -1,6 +1,6 @@
 import React from "react";
-import SearchBar from "./HeaderSearch";
 import NoteItem from "./NoteItem";
+import SearchBar from "./SearchBar";
 
 export default function NotesList({ notesList, title }) {
   const [filteredNotes, setFilteredNotes] = React.useState(notesList);
