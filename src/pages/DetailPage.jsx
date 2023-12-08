@@ -1,7 +1,13 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { showFormattedDate } from "../utils";
-import { getNote } from "../utils/local-data";
+import {
+  archiveNote,
+  deleteNote,
+  getAllNotes,
+  getNote,
+  unarchiveNote,
+} from "../utils/local-data";
 import NotFoundPage from "./404";
 
 export default function DetailPage() {
@@ -15,7 +21,10 @@ export default function DetailPage() {
     const result = window.confirm(
       `Are you sure you want to delete "${note.title}"?`
     );
-    if (result) deleteNote(note.id);
+    if (result) {
+      deleteNote(note.id);
+      navigate("/");
+    }
   }
 
   function onArchive(id) {
@@ -23,8 +32,10 @@ export default function DetailPage() {
     if (!note) return;
     if (note.archived) {
       unarchiveNote(note.id);
+      navigate("/archive");
     } else {
       archiveNote(note.id);
+      navigate("/");
     }
   }
 
@@ -40,19 +51,13 @@ export default function DetailPage() {
       <div className="detail-page__action">
         <button
           className="detail-page__archive-button"
-          onClick={() => {
-            onArchive(id);
-            navigate("/");
-          }}
+          onClick={() => onArchive(id)}
         >
           {note.archived === false ? "Archive" : "Unarchive"}
         </button>
         <button
           className="detail-page__delete-button"
-          onClick={() => {
-            onDelete(id);
-            navigate("/");
-          }}
+          onClick={() => onDelete(id)}
         >
           Delete
         </button>
