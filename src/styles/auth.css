@@ -1,13 +1,16 @@
-.login-page__form {
+.login-page__form,
+.register-page__form {
   margin: 32px 0;
 }
 
-.login-page__form label {
+.login-page__form label,
+.register-page__form label {
   font-size: 18px;
   font-weight: lighter;
 }
 
-.login-page__form input {
+.login-page__form input,
+.register-page__form input {
   background-color: initial;
   border: 1px solid #ffffff;
   border-radius: 4px;
@@ -21,7 +24,8 @@
   width: 100%;
 }
 
-.login-page__form button {
+.login-page__form button,
+.register-page__form button {
   background-color: #ffffff;
   border: 0;
   border-radius: 4px;
