@@ -1,26 +1,38 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 import { noteItemPropTypes } from "../types";
 import NoteItem from "./NoteItem";
 import SearchBar from "./SearchBar";
 
 export default function NotesList({ notesList, title }) {
-  const [filteredNotes, setFilteredNotes] = React.useState(notesList);
-  function onSearch(text) {
-    if (text.length !== 0 && text.trim() !== "")
-      setFilteredNotes(
-        notesList.filter((note) =>
-          note.title.toLowerCase().includes(text.toLowerCase())
-        )
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("q");
+
+  const [filteredNotes, setFilteredNotes] = React.useState(filterNotes(query));
+
+  function filterNotes(query) {
+    if (query && query.length !== 0 && query.trim() !== "")
+      return notesList.filter((note) =>
+        note.title.toLowerCase().includes(query.toLowerCase())
       );
-    else setFilteredNotes(notesList);
+    else return notesList;
+  }
+
+  function onSearch(text) {
+    if (text) setSearchParams({ q: text });
+    else {
+      searchParams.delete("q");
+      setSearchParams(searchParams);
+    }
+    setFilteredNotes(filterNotes(text));
   }
 
   return (
     <>
       <h2 style={{ marginBottom: 0 }}>{title}</h2>
       <SearchBar onSearch={onSearch} />
-      {filteredNotes.length !== 0 ? (
+      {filteredNotes?.length !== 0 ? (
         <div className="notes-list">
           {filteredNotes.map((item) => (
             <NoteItem key={item.id} note={item} />
