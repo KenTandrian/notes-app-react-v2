@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { noteItemPropTypes } from "../types";
 import { showFormattedDate } from "../utils";
 
 export default function NoteItem({ note }) {
@@ -22,5 +23,5 @@ export default function NoteItem({ note }) {
 }
 
 NoteItem.propTypes = {
-  note: PropTypes.object.isRequired,
+  note: PropTypes.shape(noteItemPropTypes).isRequired,
 };

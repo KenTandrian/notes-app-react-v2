@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { noteItemPropTypes } from "../types";
 import NoteItem from "./NoteItem";
 import SearchBar from "./SearchBar";
 
@@ -33,6 +34,6 @@ export default function NotesList({ notesList, title }) {
 }
 
 NotesList.propTypes = {
-  notesList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  notesList: PropTypes.arrayOf(PropTypes.shape(noteItemPropTypes)).isRequired,
   title: PropTypes.string.isRequired,
 };
