@@ -1,11 +1,12 @@
 import { createContext, useEffect, useState } from "react";
-import { getUserLogged } from "../utils/network-data";
+import { getUserLogged, putAccessToken } from "../utils/network-data";
 
 // DEFAULT DATA
 const DEFAULT_AUTH_DATA = { loading: true, user: null };
 
 const AppContext = createContext({
   authData: DEFAULT_AUTH_DATA,
+  onLogout: () => {},
   refreshAuth: () => {},
 });
 
@@ -21,12 +22,17 @@ export function AppContextProvider({ children }) {
     }
   }
 
+  function onLogout() {
+    setAuthData((p) => ({ ...p, user: null }));
+    putAccessToken("");
+  }
+
   useEffect(() => {
     refreshAuth();
   }, []);
 
   return (
-    <AppContext.Provider value={{ authData, refreshAuth }}>
+    <AppContext.Provider value={{ authData, onLogout, refreshAuth }}>
       {children}
     </AppContext.Provider>
   );

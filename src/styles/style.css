@@ -64,6 +64,20 @@ textarea::placeholder {
   cursor: pointer;
 }
 
+.note-app__icon-button {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  margin-bottom: -4px;
+  padding: 0 1em;
+}
+
+.note-app__icon-button svg {
+  width: 1.75em;
+  height: 1.75em;
+}
+
 .note-app__body {
   max-width: 1000px;
   margin: 16px auto;
