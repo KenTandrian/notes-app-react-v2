@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NoteInput from "../components/NoteInput";
-import { addNote } from "../utils/local-data";
+import { addNote } from "../utils/network-data";
 
 const INITIAL_STATE = {
   title: "",
@@ -11,6 +11,12 @@ const INITIAL_STATE = {
 export default function AddPage() {
   const [data, setData] = useState(INITIAL_STATE);
   const navigate = useNavigate();
+
+  async function onSubmit() {
+    const { error } = await addNote(data);
+    if (!error) navigate("/");
+  }
+
   return (
     <section className="add-page">
       <NoteInput
@@ -25,10 +31,7 @@ export default function AddPage() {
           className="add-page__button"
           type="button"
           title="Save"
-          onClick={() => {
-            addNote(data);
-            navigate("/");
-          }}
+          onClick={onSubmit}
         >
           Save
         </button>
