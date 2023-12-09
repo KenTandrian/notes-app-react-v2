@@ -1,6 +1,21 @@
 @import "auth.css";
 @import "loading.css";
 
+/* THEME COLORS */
+:root {
+  --background: #202124;
+  --on-background: #fff;
+  --on-background-gray: #c7c7c7;
+  --yellow: #fff263;
+}
+
+[data-theme="light"] {
+  --background: #f2f2f2;
+  --on-background: #333;
+  --on-background-gray: #6d6d6d;
+  --yellow: #e79107;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -9,8 +24,9 @@
 
 body {
   font-family: "Inter", sans-serif;
-  background-color: #202124;
-  color: white;
+  background-color: var(--background);
+  color: var(--on-background);
+  transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out;
 }
 
 a {
@@ -43,18 +59,18 @@ textarea::placeholder {
   border-bottom: 1px solid #aaa;
   position: sticky;
   top: 0;
-  background-color: #202124;
+  background-color: var(--background);
 }
 
 .note-app__header h1 {
   margin: 8px 0;
   flex: 1;
-  color: white;
+  color: var(--on-background);
 }
 
 .note-app_archive-button {
   border: 1px solid #aaa;
-  color: #fff263;
+  color: var(--yellow);
   display: block;
   background-color: transparent;
   padding: 10px 20px;
@@ -67,7 +83,7 @@ textarea::placeholder {
 .note-app__icon-button {
   background-color: transparent;
   border: none;
-  color: #ffffff;
+  color: var(--on-background);
   cursor: pointer;
   margin-bottom: -4px;
   margin-left: 1em;
@@ -206,7 +222,7 @@ textarea::placeholder {
 .detail-page__archive-button,
 .add-page__button {
   border-right: 1px solid #aaa;
-  color: #fff263;
+  color: var(--yellow);
 }
 
 .detail-page__archive-button:hover {
@@ -234,7 +250,7 @@ textarea::placeholder {
 
 .note-body__add-note-button {
   border: 1px solid #aaa;
-  color: #fff263;
+  color: var(--yellow);
   display: block;
   width: 100%;
   background-color: transparent;
@@ -257,7 +273,7 @@ textarea::placeholder {
 }
 
 .detail-page__date {
-  color: #c7c7c7;
+  color: var(--on-background-gray);
 }
 
 .detail-page__body {
@@ -283,7 +299,7 @@ textarea::placeholder {
 }
 
 .add-page__input__title::placeholder {
-  color: #c7c7c7;
+  color: var(--on-background-gray);
 }
 
 .add-page__input .add-page__input__body {
@@ -299,7 +315,7 @@ textarea::placeholder {
 
 [data-placeholder]:empty::before {
   content: attr(data-placeholder);
-  color: #c7c7c7;
+  color: var(--on-background-gray);
 }
 
 .ReactModal__Overlay {
