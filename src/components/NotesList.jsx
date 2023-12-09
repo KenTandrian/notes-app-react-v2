@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { noteItemPropTypes } from "../types";
 import NoteItem from "./NoteItem";
@@ -9,7 +9,7 @@ export default function NotesList({ notesList, title }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q");
 
-  const [filteredNotes, setFilteredNotes] = React.useState(filterNotes(query));
+  const [filteredNotes, setFilteredNotes] = React.useState([]);
 
   function filterNotes(query) {
     if (query && query.length !== 0 && query.trim() !== "")
@@ -27,6 +27,10 @@ export default function NotesList({ notesList, title }) {
     }
     setFilteredNotes(filterNotes(text));
   }
+
+  useEffect(() => {
+    if (notesList) setFilteredNotes(filterNotes(query));
+  }, [notesList]);
 
   return (
     <>
