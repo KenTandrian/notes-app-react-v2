@@ -7,6 +7,7 @@ import AddPage from "./pages/AddPage";
 import ArchivePage from "./pages/ArchivePage";
 import DetailPage from "./pages/DetailPage";
 import HomePage from "./pages/HomePage";
+import LoadingPage from "./pages/LoadingPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 
@@ -17,8 +18,10 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           {authData.loading ? (
-            // Replace with Loading Page
-            <Route path="*" element={<></>} />
+            <>
+              <Route index element={<LoadingPage />} />
+              <Route path="*" element={<LoadingPage />} />
+            </>
           ) : !authData.user ? (
             <>
               <Route index element={<LoginPage />} />
