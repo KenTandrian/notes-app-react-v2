@@ -1,47 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { showFormattedDate } from "../utils";
 import {
   archiveNote,
   deleteNote,
-  getAllNotes,
   getNote,
   unarchiveNote,
-} from "../utils/local-data";
+} from "../utils/network-data";
 import NotFoundPage from "./404";
+import LoadingPage from "./LoadingPage";
 
 export default function DetailPage() {
+  const [loading, setLoading] = useState(true);
+  const [note, setNote] = useState();
   const { id } = useParams();
   const navigate = useNavigate();
-  const note = getNote(id);
 
-  function onDelete(id) {
-    const note = getAllNotes().find((note) => note.id === id);
-    if (!note) return;
+  async function load() {
+    try {
+      const { data } = await getNote(id);
+      if (data) setNote(data);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  async function onDelete(id) {
     const result = window.confirm(
       `Are you sure you want to delete "${note.title}"?`
     );
     if (result) {
-      deleteNote(note.id);
-      navigate("/");
+      const { error } = await deleteNote(id);
+      if (!error) navigate("/");
     }
   }
 
-  function onArchive(id) {
-    const note = getAllNotes().find((note) => note.id === id);
-    if (!note) return;
+  async function onArchive(id) {
     if (note.archived) {
-      unarchiveNote(note.id);
-      navigate("/archive");
+      const { error } = await unarchiveNote(id);
+      if (!error) navigate("/archive");
     } else {
-      archiveNote(note.id);
-      navigate("/");
+      const { error } = await archiveNote(id);
+      if (!error) navigate("/");
     }
   }
 
-  if (!note) {
-    return <NotFoundPage />;
-  }
+  if (loading) return <LoadingPage />;
+  if (!note) return <NotFoundPage />;
 
   return (
     <section className="detail-page">
