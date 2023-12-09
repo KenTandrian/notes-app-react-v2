@@ -1,15 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AppContext from "../contexts";
+import useInput from "../hooks/useInput";
 import { login, putAccessToken } from "../utils/network-data";
 
 export default function LoginPage() {
   const { refreshAuth, t } = useContext(AppContext);
-  const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const [email, onEmailChange] = useInput("");
+  const [password, onPasswordChange] = useInput("");
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const { email, password } = loginData;
     const { error, data } = await login({ email, password });
     if (!error) {
       try {
@@ -33,22 +34,18 @@ export default function LoginPage() {
         <label htmlFor="email">Email</label>
         <input
           id="email"
-          onChange={(e) =>
-            setLoginData((p) => ({ ...p, email: e.target.value }))
-          }
+          onChange={onEmailChange}
           required
           type="email"
-          value={loginData.email}
+          value={email}
         />
         <label htmlFor="password">Password</label>
         <input
           id="password"
-          onChange={(e) =>
-            setLoginData((p) => ({ ...p, password: e.target.value }))
-          }
+          onChange={onPasswordChange}
           required
           type="password"
-          value={loginData.password}
+          value={password}
         />
         <button type="submit">Login</button>
       </form>

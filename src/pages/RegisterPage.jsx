@@ -1,33 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AppContext from "../contexts";
+import useInput from "../hooks/useInput";
 import { register } from "../utils/network-data";
 
 export default function RegisterPage() {
   const { t } = useContext(AppContext);
   const navigate = useNavigate();
-  const [regData, setRegData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
 
-  function onChange(e, field) {
-    setRegData((p) => ({ ...p, [field]: e.target.value }));
-  }
+  const [name, onNameChange] = useInput("");
+  const [email, onEmailChange] = useInput("");
+  const [password, onPasswordChange] = useInput("");
+  const [cPassword, onCPasswordChange] = useInput("");
 
   async function onSubmit(e) {
     e.preventDefault();
-    if (regData.password !== regData.confirmPassword) {
+    if (password !== cPassword) {
       alert("Passwords do not match!");
       return;
     }
-    const result = await register({
-      email: regData.email,
-      name: regData.name,
-      password: regData.password,
-    });
+    const result = await register({ email, name, password });
     if (!result.error) navigate("/");
   }
 
@@ -41,25 +33,15 @@ export default function RegisterPage() {
       </h2>
       <form className="register-page__form" onSubmit={onSubmit}>
         <label htmlFor="name">{t("Name", "Nama")}</label>
-        <input
-          type="text"
-          id="name"
-          value={regData.name}
-          onChange={(e) => onChange(e, "name")}
-        />
+        <input type="text" id="name" value={name} onChange={onNameChange} />
         <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          value={regData.email}
-          onChange={(e) => onChange(e, "email")}
-        />
+        <input type="email" id="email" value={email} onChange={onEmailChange} />
         <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
-          value={regData.password}
-          onChange={(e) => onChange(e, "password")}
+          value={password}
+          onChange={onPasswordChange}
         />
         <label htmlFor="confirmPassword">
           {t("Confirm Password", "Konfirmasi Password")}
@@ -67,8 +49,8 @@ export default function RegisterPage() {
         <input
           type="password"
           id="confirmPassword"
-          value={regData.confirmPassword}
-          onChange={(e) => onChange(e, "confirmPassword")}
+          value={cPassword}
+          onChange={onCPasswordChange}
         />
         <button type="submit">{t("Register", "Daftar")}</button>
       </form>
