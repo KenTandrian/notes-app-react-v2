@@ -4,7 +4,7 @@ import AppContext from "../contexts";
 import { login, putAccessToken } from "../utils/network-data";
 
 export default function LoginPage() {
-  const appContext = useContext(AppContext);
+  const { locale, refreshAuth } = useContext(AppContext);
   const [loginData, setLoginData] = useState({ email: "", password: "" });
 
   async function handleSubmit(e) {
@@ -14,7 +14,7 @@ export default function LoginPage() {
     if (!error) {
       try {
         putAccessToken(data.accessToken);
-        appContext.refreshAuth();
+        refreshAuth();
       } catch (err) {
         console.log(err);
       }
@@ -23,7 +23,11 @@ export default function LoginPage() {
 
   return (
     <section className="login-page">
-      <h2>Yuk, login untuk menggunakan aplikasi.</h2>
+      <h2>
+        {locale === "en"
+          ? "Come on! Log in to use the application."
+          : "Yuk, login untuk menggunakan aplikasi."}
+      </h2>
       <form className="login-page__form" onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
@@ -48,9 +52,9 @@ export default function LoginPage() {
         <button type="submit">Login</button>
       </form>
       <p>
-        Belum punya akun?{" "}
+        {locale === "en" ? "Don't have an account yet?" : "Belum punya akun?"}{" "}
         <Link style={{ textDecoration: "underline" }} to="/register">
-          Daftar di sini
+          {locale === "en" ? "Register here" : "Daftar di sini"}
         </Link>
       </p>
     </section>

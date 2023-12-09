@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AppContext from "../contexts";
 import { register } from "../utils/network-data";
 
 export default function RegisterPage() {
+  const { locale } = useContext(AppContext);
   const navigate = useNavigate();
   const [regData, setRegData] = useState({
     name: "",
@@ -31,9 +33,13 @@ export default function RegisterPage() {
 
   return (
     <section className="register-page">
-      <h2>Fill the form to register account.</h2>
+      <h2>
+        {locale === "en"
+          ? "Fill the form to register account."
+          : "Isi formulir untuk mendaftar akun."}
+      </h2>
       <form className="register-page__form" onSubmit={onSubmit}>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">{locale === "en" ? "Name" : "Nama"}</label>
         <input
           type="text"
           id="name"
@@ -54,19 +60,21 @@ export default function RegisterPage() {
           value={regData.password}
           onChange={(e) => onChange(e, "password")}
         />
-        <label htmlFor="confirmPassword">Confirm Password</label>
+        <label htmlFor="confirmPassword">
+          {locale === "en" ? "Confirm Password" : "Konfirmasi Password"}
+        </label>
         <input
           type="password"
           id="confirmPassword"
           value={regData.confirmPassword}
           onChange={(e) => onChange(e, "confirmPassword")}
         />
-        <button type="submit">Register</button>
+        <button type="submit">{locale === "en" ? "Register" : "Daftar"}</button>
       </form>
       <p>
-        Already have an account?{" "}
-        <Link style={{ textDecoration: "underline" }} to="/login">
-          Login here
+        {locale === "en" ? "Already have an account?" : "Sudah punya akun?"}{" "}
+        <Link style={{ textDecoration: "underline" }} to="/">
+          {locale === "en" ? "Login here" : "Login di sini"}
         </Link>
       </p>
     </section>
