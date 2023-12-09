@@ -45,6 +45,10 @@ export function AppContextProvider({ children }) {
     localStorage.setItem("locale", currentLocale === "en" ? "id" : "en");
   }
 
+  function t(en, id) {
+    return locale === "en" ? en : id;
+  }
+
   useEffect(() => {
     refreshAuth();
     if (localStorage.getItem("theme")) {
@@ -70,6 +74,7 @@ export function AppContextProvider({ children }) {
         locale,
         onLogout,
         refreshAuth,
+        t, // translate
         theme,
         toggleLocale,
         toggleTheme,

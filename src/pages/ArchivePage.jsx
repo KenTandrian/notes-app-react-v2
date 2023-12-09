@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import NotesList from "../components/NotesList";
+import AppContext from "../contexts";
 import { getArchivedNotes } from "../utils/network-data";
 
 export default function ArchivePage() {
+  const { locale } = useContext(AppContext);
   const [notes, setNotes] = useState([]);
 
   async function load() {
@@ -18,5 +20,10 @@ export default function ArchivePage() {
     load();
   }, []);
 
-  return <NotesList notesList={notes} title="Archived Notes" />;
+  return (
+    <NotesList
+      notesList={notes}
+      title={locale === "en" ? "Archived Notes" : "Catatan Terarsip"}
+    />
+  );
 }

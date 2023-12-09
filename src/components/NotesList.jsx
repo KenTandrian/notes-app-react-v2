@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import AppContext from "../contexts";
 import { noteItemPropTypes } from "../types";
 import NoteItem from "./NoteItem";
 import SearchBar from "./SearchBar";
 
 export default function NotesList({ notesList, title }) {
+  const { locale } = useContext(AppContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q");
 
@@ -43,7 +45,9 @@ export default function NotesList({ notesList, title }) {
           ))}
         </div>
       ) : (
-        <p className="notes-list__empty-message">No notes here.</p>
+        <p className="notes-list__empty-message">
+          {locale === "en" ? "No notes here." : "Tidak ada catatan."}
+        </p>
       )}
     </>
   );

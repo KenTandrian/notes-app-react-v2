@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import AppContext from "../contexts";
 import { showFormattedDate } from "../utils";
 import {
   archiveNote,
@@ -11,6 +12,7 @@ import NotFoundPage from "./404";
 import LoadingPage from "./LoadingPage";
 
 export default function DetailPage() {
+  const { t } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
   const [note, setNote] = useState();
   const { id } = useParams();
@@ -33,7 +35,10 @@ export default function DetailPage() {
 
   async function onDelete(id) {
     const result = window.confirm(
-      `Are you sure you want to delete "${note.title}"?`
+      t(
+        `Are you sure you want to delete "${note.title}"?`,
+        `Apakah Anda yakin ingin menghapus catatan "${note.title}"?`
+      )
     );
     if (result) {
       const { error } = await deleteNote(id);
@@ -64,13 +69,15 @@ export default function DetailPage() {
           className="detail-page__archive-button"
           onClick={() => onArchive(id)}
         >
-          {note.archived === false ? "Archive" : "Unarchive"}
+          {note.archived === false
+            ? t("Archive", "Arsipkan")
+            : t("Unarchive", "Batalkan arsip")}
         </button>
         <button
           className="detail-page__delete-button"
           onClick={() => onDelete(id)}
         >
-          Delete
+          {t("Delete", "Hapus")}
         </button>
       </div>
     </section>
