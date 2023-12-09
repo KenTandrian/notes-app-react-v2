@@ -5,7 +5,7 @@ import AppContext from "../contexts";
 import { getActiveNotes } from "../utils/network-data";
 
 export default function HomePage() {
-  const { locale } = useContext(AppContext);
+  const { t } = useContext(AppContext);
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
 
@@ -25,20 +25,18 @@ export default function HomePage() {
   return (
     <>
       <h2 className="note-body__heading">
-        {locale === "en"
-          ? "Welcome to your personal notes!"
-          : "Selamat datang di catatan pribadi Anda!"}
+        {t(
+          "Welcome to your personal notes!",
+          "Selamat datang di catatan pribadi Anda!"
+        )}
       </h2>
       <button
         className="note-body__add-note-button"
         onClick={() => navigate("/new")}
       >
-        {locale === "en" ? "Add new note" : "Buat catatan baru"}
+        {t("Add new note", "Buat catatan baru")}
       </button>
-      <NotesList
-        notesList={notes}
-        title={locale === "en" ? "Active Notes" : "Catatan Aktif"}
-      />
+      <NotesList notesList={notes} title={t("Active Notes", "Catatan Aktif")} />
     </>
   );
 }

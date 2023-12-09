@@ -1,6 +1,7 @@
 import parser from "html-react-parser";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useContext } from "react";
+import AppContext from "../contexts";
 
 export default function NoteInput({
   title,
@@ -8,11 +9,12 @@ export default function NoteInput({
   onBodyInput,
   initialBodyEdit,
 }) {
+  const { t } = useContext(AppContext);
   return (
     <div className="add-page__input">
       <input
         className="add-page__input__title"
-        placeholder="New note"
+        placeholder={t("New note", "Catatan baru")}
         value={title}
         onChange={onTitleChange}
         spellCheck="false"
@@ -20,7 +22,10 @@ export default function NoteInput({
       <div
         className="add-page__input__body"
         contentEditable="true"
-        data-placeholder="Notes content here ...."
+        data-placeholder={t(
+          "Notes content here....",
+          "Isi catatan di sini...."
+        )}
         onInput={onBodyInput}
         spellCheck="false"
         suppressContentEditableWarning={true}

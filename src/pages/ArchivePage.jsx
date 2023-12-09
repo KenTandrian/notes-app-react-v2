@@ -4,7 +4,7 @@ import AppContext from "../contexts";
 import { getArchivedNotes } from "../utils/network-data";
 
 export default function ArchivePage() {
-  const { locale } = useContext(AppContext);
+  const { t } = useContext(AppContext);
   const [notes, setNotes] = useState([]);
 
   async function load() {
@@ -23,7 +23,7 @@ export default function ArchivePage() {
   return (
     <NotesList
       notesList={notes}
-      title={locale === "en" ? "Archived Notes" : "Catatan Terarsip"}
+      title={t("Archived Notes", "Catatan Terarsip")}
     />
   );
 }

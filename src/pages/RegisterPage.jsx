@@ -4,7 +4,7 @@ import AppContext from "../contexts";
 import { register } from "../utils/network-data";
 
 export default function RegisterPage() {
-  const { locale } = useContext(AppContext);
+  const { t } = useContext(AppContext);
   const navigate = useNavigate();
   const [regData, setRegData] = useState({
     name: "",
@@ -34,12 +34,13 @@ export default function RegisterPage() {
   return (
     <section className="register-page">
       <h2>
-        {locale === "en"
-          ? "Fill the form to register account."
-          : "Isi formulir untuk mendaftar akun."}
+        {t(
+          "Fill the form to register account.",
+          "Isi formulir untuk mendaftar akun."
+        )}
       </h2>
       <form className="register-page__form" onSubmit={onSubmit}>
-        <label htmlFor="name">{locale === "en" ? "Name" : "Nama"}</label>
+        <label htmlFor="name">{t("Name", "Nama")}</label>
         <input
           type="text"
           id="name"
@@ -61,7 +62,7 @@ export default function RegisterPage() {
           onChange={(e) => onChange(e, "password")}
         />
         <label htmlFor="confirmPassword">
-          {locale === "en" ? "Confirm Password" : "Konfirmasi Password"}
+          {t("Confirm Password", "Konfirmasi Password")}
         </label>
         <input
           type="password"
@@ -69,12 +70,12 @@ export default function RegisterPage() {
           value={regData.confirmPassword}
           onChange={(e) => onChange(e, "confirmPassword")}
         />
-        <button type="submit">{locale === "en" ? "Register" : "Daftar"}</button>
+        <button type="submit">{t("Register", "Daftar")}</button>
       </form>
       <p>
-        {locale === "en" ? "Already have an account?" : "Sudah punya akun?"}{" "}
+        {t("Already have an account?", "Sudah punya akun?")}{" "}
         <Link style={{ textDecoration: "underline" }} to="/">
-          {locale === "en" ? "Login here" : "Login di sini"}
+          {t("Login here", "Login di sini")}
         </Link>
       </p>
     </section>

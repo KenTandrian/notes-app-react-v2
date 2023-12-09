@@ -6,12 +6,12 @@ import AppContext from "../contexts";
 
 export default function Header() {
   const navigate = useNavigate();
-  const { authData, locale, onLogout, theme, toggleLocale, toggleTheme } =
+  const { authData, onLogout, t, theme, toggleLocale, toggleTheme } =
     useContext(AppContext);
   return (
     <div className="note-app__header">
       <h1 onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
-        {locale === "en" ? "My Notes" : "Catatan Saya"}
+        {t("My Notes", "Catatan Saya")}
       </h1>
       <div style={{ display: "flex", gap: "8px" }}>
         {authData.user && (
@@ -19,7 +19,7 @@ export default function Header() {
             className="note-app_archive-button"
             onClick={() => navigate("/archive")}
           >
-            {locale === "en" ? "Archive" : "Arsip"}
+            {t("Archive", "Arsip")}
           </button>
         )}
         <button className="note-app__icon-button" onClick={toggleLocale}>

@@ -7,7 +7,7 @@ import NoteItem from "./NoteItem";
 import SearchBar from "./SearchBar";
 
 export default function NotesList({ notesList, title }) {
-  const { locale } = useContext(AppContext);
+  const { t } = useContext(AppContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q");
 
@@ -46,7 +46,7 @@ export default function NotesList({ notesList, title }) {
         </div>
       ) : (
         <p className="notes-list__empty-message">
-          {locale === "en" ? "No notes here." : "Tidak ada catatan."}
+          {t("No notes here.", "Tidak ada catatan.")}
         </p>
       )}
     </>

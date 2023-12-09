@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NoteInput from "../components/NoteInput";
+import AppContext from "../contexts";
 import { addNote } from "../utils/network-data";
 
 const INITIAL_STATE = {
@@ -9,6 +10,7 @@ const INITIAL_STATE = {
 };
 
 export default function AddPage() {
+  const { t } = useContext(AppContext);
   const [data, setData] = useState(INITIAL_STATE);
   const navigate = useNavigate();
 
@@ -33,7 +35,7 @@ export default function AddPage() {
           title="Save"
           onClick={onSubmit}
         >
-          Save
+          {t("Save", "Simpan")}
         </button>
       </div>
     </section>
